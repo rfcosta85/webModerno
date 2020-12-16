@@ -16,8 +16,8 @@ function compoundInterest(inicialAmount, interest, applicationTime)
 
 }
 
-let result = simpleInterest(300000, 6, 1)
-let compoundResult = compoundInterest(300000, 6, 3)
+let result = simpleInterest(300000, 6, 3)
+let compoundResult = compoundInterest(300000, 10, 3)
 
 console.log(`O rendimento em juros simples será de: ${result.toLocaleString('pt-br', {style:'currency' ,currency: 'BRL'})}`)
 console.log(`O rendimento em juros compostos será de: ${compoundResult.toLocaleString('pt-br', {style:'currency' ,currency: 'BRL'})}`)
