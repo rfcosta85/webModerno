@@ -1,8 +1,6 @@
 let array = [2,6,1,9]
-let array2 = [3,4,7,5]
 let multiplier = 6
 let results = []
-let results2 = []
 
 function operation(arrayOfNumbers, operator)
 {
