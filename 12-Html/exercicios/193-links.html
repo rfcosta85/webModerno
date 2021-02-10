@@ -2,7 +2,7 @@
 
 <!--URL Absoluta-->
 
-<a href="https://www.google.com.br">Google 1</a><br>
+<a id="inicio" href="https://www.google.com.br">Google 1</a><br>
 <a href="https://www.google.com.br" target="_blank">Google 2</a><br><br>
 
 <!--Quando usamos a url relativa, é preciso ter o cuidado de sempre informar o http, pois sem ela iremos estar indicando que queremos acessar uma url dentro do nosso localhost.-->
@@ -12,3 +12,19 @@
 <a href="186-index.html">Voltar 1</a><br> <!--Aqui ele sairia da página atual e iria para index.html-->
 <a href="/186-index.html">Voltar 2</a><br> <!--Aqui iremos acessar a página raiz da aplicação-->
 <a href="../186-index.html">Voltar 3</a><br>  <!--Estamos saíndo de uma pasta e indo para o index.html-->
+
+<!--Link para Email-->
+
+<a href="mailto:rfcosta85@gmail.com">Entre em contato</a><br>
+
+<!--Link Âncora-->
+
+<div id="noticia" style="position: absolute;top: 2000px;">
+    
+    <h1>Notícia Buemba!</h1>
+    <p>Nãp era nada...</p>
+    <a href="#inicio">Volta início</a>
+
+</div>
+
+<a href="#noticia">Ir para Notícia</a>
