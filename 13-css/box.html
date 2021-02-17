@@ -5,7 +5,25 @@
     <meta charset="UTF-8">
     <title>Box Model</title>
     <style>
-        /* ... */
+       
+       body { font-size: 80px; margin: 0; }
+       .c1 { background-color: orange; }
+       .c2 { background-color: skyblue; }
+       .c3 { background-color: tomato; }
+
+       div 
+       {
+
+           float: left; /*Dessa forma ele perde o conceito de block e assim ficam todos na mesma linha*/
+           padding-top: 100px; /*O padding fica computado dentro da largura e altura do componente*/
+           padding: 10px 50px 100px 150px; /*O padding fica computado dentro da largura e altura do componente*/
+           padding: 100px 50px;
+           padding: 50px;
+           margin: 0px 20px; /*Causou a separação dos elementos*/
+           border: solid 15px black;
+
+       }
+
     </style>
 </head>
 
