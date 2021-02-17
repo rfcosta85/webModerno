@@ -6,6 +6,32 @@
     <title>Especificidade CSS</title>
     <style>
         /* https://developer.mozilla.org/pt-BR/docs/Web/CSS/Specificity */
+
+        p 
+        {
+            
+            background-color: #aaa;
+
+        }
+
+        .obsservacao 
+        {
+
+            background-color: #5f5; /*Aqui mesmo que o p venha depois, o background verde será mantido*/
+            border: dashed 5px;
+            padding: 20px;
+            font-size: 40px;
+
+        }
+
+        p.obsservacao /*Aqui temos um seletor mais específico, pois ele tem a tag p e a classe e ele será usado*/
+        {
+
+            padding: 2px;
+            background: linear-gradient(to right, red, yellow);
+
+        }
+
     </style>
 </head>
 
