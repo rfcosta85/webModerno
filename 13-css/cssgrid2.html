@@ -20,6 +20,23 @@
             border: solid 5px dodgerblue;
             background: #fff;
         }
+
+        body {
+            display: grid;
+            grid-template-columns: [inicio] 1fr [metade-1 meio-1] 1fr [metade-2 meio-2] 1fr [fim]; /* Os [] representam o nome da linha podemos usar dois nomes e usar quais desejarmos*/
+            grid-template-rows: repeat(3, 1fr);
+            grid-column-gap: 20px; /* Espaçamento nas colunas */
+            grid-row-gap: 20px;   
+            grid-gap: 50px 10px; /* Aqui teremos 50px de gap nas linhas e 10px na coluna*/ 
+            grid-gap: 10px; /* Aplica nas linhas e nas colunas */        
+        }
+
+        .d1 {
+            grid-column-start: metade-2;
+            grid-column-end: fim;
+            grid-column: meio-1 / fim; /* A barra faz parte da sintaxe */
+            grid-area: 1 / meio-1 / span 3 / fim;
+        }
     </style>
 </head>
 
