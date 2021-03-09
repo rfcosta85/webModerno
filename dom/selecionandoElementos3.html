@@ -31,7 +31,14 @@
         <button>Pesquisar</button>
     </form>
     <script>
-        // ...
+        console.log(document.forms) /* array de todos os formulários no formato HTML Collection */
+        console.log(document.forms[0])
+        console.log(document.getElementsByName('pesquisa')) /* Retorna um nodeList */
+        console.log(document.pesquisa) /* retorna o formulário pesquisa */
+        console.log(document.pesquisa.q) /* Retorna o input de nome q */
+        document.pesquisa.q.value = 'Linux Brasil' /* Preenche o campo de pesquisa com o Linux Brasil */
+        document.pesquisa.hl.value = 'en-us' /* O q o hl são dois parâmetros que você pode passar para o Google */
+        console.log(document.pesquisa.hl.selectIndex) /* Vai dizer qual índice está selecionado */
     </script>
 </body>
 
