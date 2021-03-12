@@ -12,7 +12,16 @@
         <p>Texto Inicial</p>
     </div>
     <script>
-        // ...
+        const div = document.querySelector('div')
+        div.innerHTML = 'Texto Alterado' /* Aqui o innerHTML substitui tudo que tinha dentro da div por texto alterado, inclusive excluindo o p que existia dentro dessa div */
+        //div.outerHTML = 'Texto Alterado' /* Aqui até a div deixará de existir, passando a ter apenas o texto puro em seu lugar */
+        div.insertAdjacentHTML('beforebegin', '<p>Antes do início</p>') /* Aqui adicionamos um elemento antes da Div */
+        div.insertAdjacentHTML('afterbegin', '<p>Depois do início</p>') /* Aqui iremos adicionar um p dentro da div */
+        div.insertAdjacentHTML('beforeend', '<p>Antes do fim</p>') /* Aqui iremos adicionar um elemento na última posição da div */
+        div.insertAdjacentHTML('afterend', '<p>Depois do fim</p>') /* Aqui iremos adicionar um elemento depois da div */
+
+        //Somente o texto (sem tags)
+        console.log(div.innerText) // Aqui ele retorna apenas o texto relacionado sem as tags.
     </script>
 </body>
 
