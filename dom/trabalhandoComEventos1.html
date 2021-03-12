@@ -9,9 +9,27 @@
 
 <body class="conteudo exercicio">
     <div>
-        <a href="https://google.com.br">Google</a>
+        <!-- onclick="navegarEm5s(event)" -->
+        <a espera-um-pouco href="https://google.com.br">Google</a>
     </div>
     <script>
-        // ...
+        function navegarEm5s(e) { 
+            e.preventDefault()
+            console.log('Saindo em 5s...')
+            setTimeout(() => {
+                const link = e.target
+                window.location.href = link.href // Aqui estamos substituindo o endereço da janela do browser 
+            }, 5000)
+        }
+
+        // teremos a mesma função só que de forma mais implícita 
+        /*const a = document.querySelector('a')
+        a.onclick = navegarEm5s*/
+
+        const a = document.querySelector('[espera-um-pouco]')
+        a.onclick = navegarEm5s
+
+        // Essa situação é interessante, pois um atributo personalizado é completamente ignorado pelo Browser, aqui teremos a certeza de ser algo a ser executado pelo JS
+
     </script>
 </body>
