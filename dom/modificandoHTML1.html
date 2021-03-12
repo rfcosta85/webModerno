@@ -9,7 +9,32 @@
 
 <body class='conteudo exercicio'>
     <script>
-        // ...
+        const body = document.querySelector('body')
+
+        const div1 = document.createElement('div')
+        div1.classList.add('destaque')
+        div1.innerHTML = 'Primeiro'
+
+        const div2 = document.createElement('div')
+        div2.setAttribute('wm-atributo', 'valor')
+        div2.innerHTML = 'Segundo'
+
+        const p = document.createElement('p')
+        p.innerHTML = 'Terceiro'
+        const div3 = document.createElement('div')
+        div3.appendChild(p) /*Vai colocar o p no ultimo elemento do pai*/
+        body.appendChild(div1)
+        body.appendChild(div2)
+        body.appendChild(div3)
+
+        const texto = document.createTextNode('Antes...')
+        div3.insertBefore(texto, div3.childNodes[0]) /* O insertBefore coloca o elemento no qual você quer adicionar um novo elemento, você passa o elemento filho que você quer adicionar e a posição que você quer inserir antes. */
+
+        /* Criando um clone */
+
+        const div4 = div3.cloneNode(true) /* Aqui você diz se vc quer clonar todo o elemento de forma profunda, ou seja, irá incluir também os seus filhos (true), se você passar como valor false, ele não irá copiar os filhos. */
+        body.appendChild(div4) /* Processo de clonagem */
+        body.removeChild(div3) /* Processo de Exclusão da div original que era a 3 */
     </script>
 </body>
 
