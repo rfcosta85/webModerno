@@ -45,7 +45,26 @@
     </div>
     <div class="direita" wm-dropzone></div>
     <script>
-        // ...
+        const items = document.querySelectorAll('[wm-dropzone] .item')
+        items.forEach((item, index) => {
+            item.draggable = true // Torna o elemento selecionável para arrastar no futuro
+            item.id = item.id || `draggable-item-${index}`
+            item.ondragstart = e => 
+            e.dataTransfer.setData(`item-id`, e.target.id)
+
+            // O dragover será o local onde você irá receber os elementos que você acabou de arrastar.
+
+            const dropzones = document.querySelectorAll(`[wm-dropzone]`)
+            dropzones.forEach(dropzone => { 
+                dropzone.ondragover = e => e.preventDefault() // ondragover acontece antes do ondrop que trataremos a frente, ondrop é quando o usuário solta o elemento que ele acabou de arrastar
+                dropzone.ondrop = function(e) {
+                    const id = e.dataTransfer.getData(`item-id`)
+                    const item = document.getElementById(id)
+                    //e.target.appendChild(item) >> Aqui podemos incluir uma caixa dentro da outra
+                    dropzon.appendChild(item) // Aqui significa que o elemento só irá ser adicionado no elemento que foi marcado como dropzone
+                }
+            })
+        })
     </script>
 </body>
 
