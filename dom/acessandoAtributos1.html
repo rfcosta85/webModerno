@@ -15,8 +15,28 @@
         <img src='http://files.cod3r.com.br/curso-web/logo-estreita.png' alt='logo'>
     </div>
     <script>
-        // ...
-    </script>
+        const img = document.querySelector('img')
+        console.log('getAttribute', img.getAttribute('src'))
+        console.log('src', img.src)
+        console.log('["src]"', img['src'])
+        console.log('alt', img.alt)
+
+        console.log('Elemento "img"....')
+        console.log('NodeType', img.nodeType) /* Pesquisar sobre os tipos de elementos do nodetype no google o valor 1 significa elemento */
+        console.log('NodeName', img.nodeName) /* Acessar o nome do elemento ou atributo que você está acessando */
+        
+        const src = img.getAttributeNode('src') /* O getAtribute irá lidar o valor do atributo, aqui teremos o nós que representa o atributo*/
+        console.log('NodeType', src.nodeType)
+        console.log('NodeName', src.nodeName)
+        console.log('NodeValue', src.nodeValue)
+
+        const link = document.querySelector('a')
+        console.log('Elemento "a"..........')
+        console.log('href', link.href)
+        console.log('fistChild.nodeType', link.firstChild.nodeType)
+        link.firstChild.nodeValue = 'Novo Texto'
+        
+     </script>
 </body>
 
 </html>
