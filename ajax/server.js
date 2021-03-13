@@ -7,6 +7,5 @@ const app = express()
 app.use(express.static('.')) // Ele vai prover dos arquivos estáticos, a partir da aplicação desse middleware 
 app.use(bodyParser.urlencoded({ extended: true })) // submit do formulário, vai ler os dados e transformar em objeto
 app.use(bodyParser.json()) // Aqui vai transformar o Json em objeto
-
-app.get('/teste', (req, res) => res.send('Ok')) 
+ 
 app.listen(8080, () => console.log('Executando...'))

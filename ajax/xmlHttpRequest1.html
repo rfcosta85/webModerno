@@ -11,6 +11,58 @@
     <h1>Estados</h1>
 
     <script>
-        // ...
+        function ajax(config) { 
+            const xhr = new XMLHttpRequest() // Esse objeto tem uma compatibilidade bem grande, mas não tem muita compatibilidade com os browsers mais antigos.
+            xhr.open(config.metodo, config.url, true) // No config.metodo, nós podemos dizer se ele é get ou post, o tornando mais flexível. 
+
+            xhr.onload = e => { 
+                if(xhr.status === 200) {
+                    config.sucesso(xhr.response) // Toda a linha 200 do HTTP eles são um status de sucesso 
+                }else if (xhr.status >= 400) {
+                    config.erro({
+                        codigo: xhr.status,
+                        texto: xhr.statusText
+                    })
+                } // Ou seja um erro do cliente ou um erro do servidor (erros entre 400 e 500)
+            }
+
+            xhr.send()
+        } // Faremos uma requisição ajax dentro da nossa função. O objeto representa as configurações e assim receberá todos os parâmetros que precisamos
+
+        function criarTabela(estados) {
+            const linhas = estados.map(estado => { 
+                const tdId = document.createElement('td') // Vamos transformar cada linha / objeto do estado em uma table row (linha da tabela)
+                tdId.innerHTML = estado.id
+                const tdNome = document.createElement('td')
+                tdNome.innerHTML = estado.nome
+                const tdSigla = document.createElement('td')
+                tdSigla.innerHTML = estado.sigla
+                const tr = document.createElement('tr')
+                tr.appendChild(tdId)
+                tr.appendChild(tdNome)
+                tr.appendChild(tdSigla)
+                return tr
+
+            }) // Aqui eu espero receber uma lista de estados
+
+            const tabela = document.createElement('table')
+            linhas.forEach(linha => tabela.appendChild(linha))
+            document.body.appendChild(tabela)
+                
+        }
+
+        ajax({
+            url: "dados/estados.json",
+            metodo: "get",
+            sucesso(resposta) {
+                const estados = JSON.parse(resposta) // Nesse método iremos criar uma tabela usando a DOM, associado com o AJAX, eu faço uma requisição com o AJAX, recebo a resposta, no momento em que eu receber a resposta eu vou começar a renderizar a minha tabela. 
+                criarTabela(estados)               
+            },
+
+            erro(e) {
+                const msg = document.createTextNode(`${e.codigo}: ${e.texto}`)
+                document.body.appendChild(msg)
+            }
+        })
     </script>
 </body>
