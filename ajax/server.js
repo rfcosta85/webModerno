@@ -11,7 +11,7 @@ app.use(bodyParser.json()) // Aqui vai transformar o Json em objeto
 const multer = require('multer')
 
 const storage = multer.diskStorage ({
-    destination: function(requ, file, callback) {
+    destination: function(req, file, callback) {
         callback(null, './upload')
     },
     filename: function (req, file, callback) {
