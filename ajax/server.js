@@ -7,5 +7,29 @@ const app = express()
 app.use(express.static('.')) // Ele vai prover dos arquivos estáticos, a partir da aplicação desse middleware 
 app.use(bodyParser.urlencoded({ extended: true })) // submit do formulário, vai ler os dados e transformar em objeto
 app.use(bodyParser.json()) // Aqui vai transformar o Json em objeto
+
+const multer = require('multer')
+
+const storage = multer.diskStorage ({
+    destination: function(requ, file, callback) {
+        callback(null, './upload')
+    },
+    filename: function (req, file, callback) {
+        callback(null, `${Date.now()}_${file.originalname}`)
+    } // Aqui teremos sempre nomes diferentes de arquivos, impedindo que ele seja sobrescrito 
+
+}) // Serve para configurar a pasta em que vc irá mandar o arquivo assim como personalizar o nome do arquivo no momento de salvar ele. O upload de arquivo, normalmente você coloca ele dentro de uma pasta e não de dentro do banco de dados
+
+const upload = multer({ storage }).single('arquivo')
+
+app.post('/upload', (req, res) => { 
+    upload(req, res, erro => {
+        if(err) {
+            return res.end('Ocorreu um erro')
+        }
+
+        res.end('Concluído com Sucesso.')
+    })
+})
  
 app.listen(8080, () => console.log('Executando...'))
