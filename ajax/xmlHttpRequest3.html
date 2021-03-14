@@ -11,6 +11,42 @@
     <h1>Estados</h1>
 
     <script>
-        // ...
+        function ajax(config) { 
+            const xhr = new XMLHttpRequest()
+            xhr.open(config.metodo, config.url, true)
+
+            xhr.onreadystatechange = e => {
+                if(xhr.readyState === 4) { 
+                    if(xhr.readyState === 200) {
+                        config.sucesso(xhr.responseXML) // o xml já irá me devolver um objeto já resolvido
+                    }else if (xhr.status >= 400) {
+                        config.erro({
+                            codigo: xhr.status,
+                            texto: xhr.statusText
+                        })
+                    }
+
+                } // Aqui é igual 4 pq é quando a requisição estará pronta e uma propriedade de status definida pela w3Schools
+            } // Esse evento será chamado, sempre que o status da requisição mudar
+
+            xhr.send()
+        }
+
+        ajax({
+            url: "dados/estados.xml",
+            metodo: "get",
+            sucesso(resposta) {
+                console.log(resposta)
+                const estados = resposta.getElementsByTagName('estado')
+                const itens = Array.from(estados).reduce(
+                    (html, estado) => html + `<li>${estado.attributes.nome.value}</li>`, ''
+                )
+                document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`)
+            },
+            erro(e) {
+                const msg = document.createTextNode(`${e.codigo}: ${e.texto}`)
+                document.body.appendChild(msg)
+            }
+        })
     </script>
 </body>
