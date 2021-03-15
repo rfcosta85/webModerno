@@ -11,6 +11,15 @@
     <h1>Estados</h1>
 
     <script>
-        // ...
+        const url = 'dados/estados.json'
+        fetch(url)
+            .then(resp => resp.json()) // A função Json irá retornar uma Promise 
+            .then(estados => { 
+                const itens = estados.reduce(
+                    (html, estado) => html + `<li>${estado.nome}</li>`, '' // A string vazia é para termos as concatenações sendo inicializadas de forma correta
+                )
+
+                document.body.insertAdjacentHTML('beforeend', `<ul>${itens}</ul>`)
+            })
     </script>
 </body>
