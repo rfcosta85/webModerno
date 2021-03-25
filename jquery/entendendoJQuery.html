@@ -14,6 +14,21 @@
     <div>2</div>
 
     <script>
-        // ...
+        $('div').hide(5000).show(5000).fadeOut(5000) // O seletor está colecionando um conjunto de objetos div, a função .hide api padrão do jQuery a função vai esconder os elementos e vai levar 5000 ms para realizar essa operação. O .show fará o processo inverso do .hide, o fadeOut volta a esconder o elemento. 
+
+        console.log($('div').get(0)) // A partir do get ele vai nos retornar no console o elemento DOM de forma precisa. Esses elementos não são puros, pq eles não possuem as funções que utilizamos de forma nativa do jQuery. Aqui temos uma extensão de projeto chamado de decorator. Aqui você consegue herdar os elementos sem necessáriamente ser uma herança e sim uma cópia. O jQuery é um Objeto que tem o nó da dom (ele é um objeto decorado), ou seja o jQuery não trabalha diretamente com os elementos da DOM. O jQuery é uma API que tem um foco muito grande em consultar os elementos da página e manipular eles de alguma forma; P pegar um objeto da função de forma específica você vai precisar usar o get
+
+        console.log($.isEmptyObject({})) //Aqui iremos verificar se o objeto está ou não vazio, o resultado aqui será true.
+
+        console.log(jQuery.inArray(3, [1, 2, 3])) // Aqui queremos saber se o 3 está dentro do array e logo como podemos ver ele vai retornar o índice do array, ou seja o resultado retornado será 2.
+
+        // Os nossos dois últimos exemplos são uma função utilitária. 
+
+        $.fn.fundoVerde = function () {
+            this.css('background-color', 'green')
+            return this // Aqui quando usamos o this estamos referenciando o objeto e permitindo que possamos encadear as chamadas.
+        } // Criamos uma função que vai referênciar o arquivo css e iremos alterar a cor do background para verde. Colocamos uma propriedade CSS
+
+        $('body').fundoVerde().fadeOut(1000) // Conseguimos criar um encadeamento de funções no seletor do body irá assumir.
     </script>
 </body>
