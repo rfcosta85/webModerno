@@ -15,6 +15,32 @@
     <div id='conteudo3'></div>
 
     <script>
-        // ...
+        // Conteúdo 1
+
+        $('#conteudo1').append('<p>1</p>') // O append é uma função p add elementos dentro de uma página
+        
+        // Conteúdo 2
+
+        const elementos = [ 
+           $('<li></li>').append('Arroz'),
+           $('<li>').append('Feijão'),
+           $('<li>').append('Carne') 
+        ] // Quando usamos o delimitadores da tag estaremos criando essa tag, quando tiramos esse delimitador estaremos selecionando o elemento
+
+        const lista = $('<ul><li>Sorvete</li></ul>').prepend(elementos) // o prepend vai apendar antes dos elementos que já estavam dentro, assim sorvete passou a ser o último da lista
+        $('#conteudo2').append(lista)
+
+        // Conteúdo 3 
+
+        $('#conteudo3').append('<h1>1</h1>')
+            .append('<h1>2</h1>').prepend('<h1>0</h1>') // O prepend anexou no inicio pois essa é a sua função
+
+        $('#conteudo3').html('<h1>123</h1>') // Aqui o HTML ele substitui o conteúdo dos elementos que nós selecionamos
+        $('#conteudo3').text('<h1>123</h1>') // O text vai fazer o scape e vai colocar tudo dentro dele como um texto dentro da div, ou seja irá aparecer em tela <h1>123</h1>
+
+        //ALterando todos 
+
+        $('div[id]').html('<strong>Todos!</strong>') // ele vai substituir o conteúdo de todas as divs que possuem id. 
+
     </script>
 </body>
