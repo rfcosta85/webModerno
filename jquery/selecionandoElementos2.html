@@ -81,6 +81,29 @@
         <p>Cod3r Ensino</p>
     </footer>
     <script>
-        // ...
+        const comBorda = { 'border': 'solid 8px orange' }
+        const semBorda = { 'border': 'none' }
+
+        $('a[href="#link3"]').parent().css(comBorda).css(semBorda) //Aqui selecionamos o elemento pai de link3 
+
+        $('li:last').prev().css(comBorda).css(semBorda) // Aqui estamos manipulando o primeiro elemento anterior ao último li encontrado no documento
+        $('a[href="#link3"]').parent().next().css(comBorda).css(semBorda) // Pegaremos o primeiro elemento pai após o elemento pai link3
+        
+        $('a[href="#link1"]').parents().css(comBorda).css(semBorda) // Aqui iremos selecionar todos os elementos a partir do link1 até a tag HTML, isso acontece devido a utilização da função parents.
+        $('a[href="#link1"]').parentsUntil($('body')).css(comBorda).css(semBorda) // Irá realizar a mesma operação anterior, mas agora somente até o body, obs ele não aplica em body, mas sim finaliza no body;
+        $('main').children().css(comBorda).css(semBorda) // Seleciona todos os filhos da tag main
+        $('body').find('a').css(comBorda).css(semBorda) // Procura todos os elementos a partir de um determinado nó. devido ao find, assim ele aplica a borda em todos os a que ele encontrou de body
+
+        const elementoDOM = document.getElementsByClassName('menu') // Vamos selecionar um elemento diretamente da Dom utilizando a API padrão
+        $(elementoDOM).css(comBorda) // p realizar a operação de cima, passamos diretamente o elemento DOM no jQuery
+
+        $('main').children().each((i, e) => $(e).css(comBorda)).css(semBorda) // Sem o $ de jQuery teríamos um erro pq estamos tentando obter um elemento direto da DOM
+
+        $('li').each((i, e) {
+            $(e).css(comBorda).css(semBorda) // Aqui iremos selecionar todos os links 
+        })
+            
+        
+
     </script>
 </body>
