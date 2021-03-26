@@ -17,6 +17,27 @@
     <p class='numero'>5</p>
 
     <script>
-        // ...
+        $('#div1').append(',2') // A div um só tinha o número 1 e agora ela vai ter 1,2
+        $('#div1').prepend('0, ') // Agora teremos 0,1,2
+        
+        $('<span>, 3</span>').appendTo('#div1') // Agora teremos 0,1,2,3; Aqui você primeiro passou o conteúdo e depois o seletor
+        $('<span>-1, </span>').prependTo('#div1') // Agora teremos -1,0,1,2,3 // tanto no prependTo e appendTo você precisa usar <> para criar um elemento
+
+        $('#div2').before('<p>Antes 2</p>') // Seleciona a div e o before cria esse elemento antes da div que contém a div com o número 2
+        $('#div2').after('<p>Depois 2</p>')
+
+        $('<p>Antes 3</p>').insertBefore('#div3') // Aqui tb invertemos a ordem, criamos o paragrafo e depois o seletor;
+        $('<p>Depois 3</p>').insertAfter('#div3')
+
+        //$('p.numero').wrap('<div>') // O warp envolveu os parágrafos com a class numero em uma div
+        $('p.numero').wrapAll('<div id="div4">') // Aqui ele iria envolver em uma única div onde já foi criado também a class dela e o conteúdo dos parágrafos
+        $("#div4").empty() // Aqui a div continua existindo, mas ela passou a ser vazia 
+        $('#div3, #div4').prev().remove() // Aqui estamos pegando a div3 e div4 e selecionando seus antecessores
+
+        //$('<div>Substituto</div>').replaceAll('body > p') // Aqui iremos substituir todos os ps dentro de body pela div Substituto
+        $('body > p').replaceWith('<div>Substituto</div>') // O resultado é o mesmo que o de cima, só esta disposto de forma diferente
+        $('body > p'). replaceWith(function() {
+            return $('div').html($(this).html()).append('!!!') // PArecido com o wrap mas aqui estamos colocando o conteúdo do paragrafo e colocando na div, conseguimos com a função callback acrescentar mais informações, temos mais flexibilidade. 
+        })
     </script>
 </body>
