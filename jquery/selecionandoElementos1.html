@@ -49,6 +49,28 @@
     </form>
 
     <script>
-        // ...
+        // O jQuery trabalha com os seletores CSS, mas também trabalha como uma espécie de filtro que é uma forma mais refinada para você selecionar as coisas que não tem por padrão. Eles não são pseudo classes nem pseudo elementos. Nesses filtros podemos refinar a nossa busca dentro da DOM. A forma mais performatica de chegar a um elemento é pelo id ou mesmo uma classe CSS. Ou até mesmo um atributo personalizado. 
+
+        $('#feira').addClass('destaque').removeClass('destaque')
+        $('li').addClass('destaque')
+        $('[wm-obrigatorio]').removeClass('destaque')
+        $('li.opcional').removeClass('destaque') // repare aqui que selecionamos apenas o li que tenha a classe opcional
+        $('div p span').addClass('destaque') // Aqui pegamos um p e um span q estejam dentro da div, e não é o seu descendente direto, pq para isso teríamos que ter utilizado o > 
+
+        // Exclusivos jQuery 
+        $('li:first').css('border', 'solid 3px yellow') // Aqui estamos pegando o primeiro elemento do tipo li para aplicarmos a borda
+        $('li:odd').css('border', 'solid 10px orange') // Aqui estamos aplicando a regra em todos os li que forem ímpar, ou seja o primeiro li, o terceiro li etc
+        $('li:gt(1)').css('border', 'solid 10px white') // gt significa greater than, ou seja maior que um determinado índice, como passamos um como parâmetro, iremos aplicar a regra para todos os li maiores que 1
+        $('li:not(:last)').css('border', 'none') //Iremos selecionar todos os elementos menos o último
+        $('li:contains("r")').css('background-color', 'black') // Iremos ver se dentro dentro de algumas da li contém r e depois aplicaremos o estilo css nesse elemento (todo elemento e não só no r).
+
+        // Filtros do formulário
+
+        $('form *').hide() // o * é um seletor universal, dessa forma ele vai esconder todos os elementos desse formulário
+        $('form :text').show() //Irá apresentar novamente um campo do tipo texto
+        $('form :password').show()
+        $('form :checkbox').show()
+        $('form :radio').show()
+        $('form :file').show()
     </script>
 </body>
