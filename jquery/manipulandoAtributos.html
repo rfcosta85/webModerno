@@ -21,8 +21,41 @@
 
 <body class='conteudo exercicio'>
     <h1>Manipulando Atributos</h1>
-    <div wm-relogio='1000'></div>
+    <div wm-relogio='1000'></div> <!-- Aqui estamos dizendo que o relógio será atualizado a cada segundo -->
+    <div wm-relogio='1000'></div> <!-- Como estamos usando uma função construtora, aqui temos setado um segundo relógio -->
     <script>
-        // ...
+        
+        function Relogio(elemento) {
+            const horaCerta = $('<p>').html('0') // vamos por a hora atual dentro desse parágrafo 
+                const botaoMenos = $('<button>').html('-') // Esse botão ficará diminuindo a quantidade de tempo que o relógio vai ficar atualizando (intervalo maior)
+                const botaoMais = $('<button>').html('+') // Fará o inverso da função de cima
+
+                const $elemento = $(elemento) //Passamos o elemento dom dentro do jQuery para no final termos todas as funcionalidades do jQuery. Ao colocarmos o $ no nome do elemento, o fizemos apenas para deixarmos claro que é o elemento que possui as funcionalidades do jQuery
+                $elemento.append(horaCerta, botaoMenos, botaoMais) 
+
+                const getIntervalorAtual = 
+                () => parseInt($elemento.attr('wm-relogio'))
+
+                let temporizador = null // ela terá o resultado da fç setInterval
+
+                const iniciar = () => {
+                    if(temporizador) clearInterval(temporizador)
+                    temporizador = setInterval(() => {
+                        horaCerta.html(new Date().toLocaleString('pt-BR'))
+                    }, getIntervalorAtual())
+                }
+
+                const alterarIntervalo = delta => {
+                    const novo = Math.max(getIntervalorAtual() + delta, 1000) // O relógio tem que ser atualizado em no mínimo 1000 ms a logica aqui sempre pegará o maior resultado, tendo como mínimo exigido de 1000
+                    $elemento.attr('wm-relogio', novo) // Aqui iremos setar apenas os valores que sejam de 1000 para cima. 
+                    iniciar() // Sempre que setarmos um novo valor, nós precisamos iniciar novamente o temporizador
+                } // recebe a diferença do intervalo que está setado 
+
+                botaoMenos.click(e => alterarIntervalo(1000)) // Toda vez que clicamos no botão menos iremos adicionar 1000 
+                botaoMais.click(e => alterarIntervalo(-1000)) // Toda vez que clicamos no botão menos iremos reduzir 1000
+                iniciar()
+        }
+
+        $('[wm-relogio]').each((i, e) => Relogio(e)) //Para cada relógio que eu obtive irei chamar new relogio passando o elemento que pegamos o index e o elemento que pegamos do each. A função fará o restante
     </script>
 </body>
