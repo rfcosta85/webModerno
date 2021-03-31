@@ -21,6 +21,23 @@
     <input type="text" placeholder="Digite e Selecione">
     <div id="resultado2">?</div>
     <script>
-        // ...
+        const alternarDestaque = () => $('#div1').toggleClass('destaque')
+        //$('#div1').on('mouseenter mouseleave', alternarDestaque) >>> TB funciona dessa forma como a função debaixo
+        $('#div1').hover(alternarDestaque) // podemos passar mais de uma função aqui com o auxilio da virgula
+
+        $('#div1').one('mouseenter', e => alert('Aviso IMPORTANTE: Obrigado!')) //Esse evento vai acontecer uma única vez, a callback é chamada apenas uma única vez.
+        $('#div1').dblclick(e => $('#div1').fadeOut(1000).fadeIn(1000)) // Aqui faz uma animação para sumir em voltar, caso vc de dois cliques.
+
+        $(window).resize(function(e) {
+            const l = $(window).width()
+            const a = $(window).height()
+            $('#resultado1').html(`Largura: ${l} e Altura: ${a}`)
+        }) // Sempre que a tela do browse se modificar ele chamará essa função callback, a função ira nos dizer a largura e altura quando houver o redirecionamento
+
+        $(':input').select(e => { 
+            const inicio = e.target.selectionStart
+            const fim = e.target.selectionEnd
+            $('#resultado2').html(e.target.value.substring(inicio, fim))
+        }) // Ao selecionar parte do elemento disparamos esse evento. Quando selecionamos algo ele aparece na tela de resultado o que nós selecionamos
     </script>
 </body>
