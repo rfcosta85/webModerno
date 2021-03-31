@@ -22,6 +22,32 @@
     </div>
 
     <script>
-        // ...
+        // O plugin irá substituir tudo que estiver dentro de dupla chaves. Através da função eval do JS
+
+        //const $ = { nome: 'Não é o jQuery' }
+        (function($) {
+            $.fn.interpretar = function() {
+                const retirarChaves = s => s.substring(2, s.length - 2) // Aqui iremos tirar as chaves dos dois primeiros e últimos caracteres
+                const conteudo = $(this).html()
+                const expressoesComChaves = conteudo.match(/\{\{.+\}\}/g) // o g é uma flag global e teremos um array de matchs
+                const expressoes = expressoesComChaves.map(retirarChaves)
+                const resultados = expressoes.map(e => eval(e))
+
+                let conteudoFinal = conteudo 
+
+                for(let i = 0; i < expressoesComChaves.length; i++) {
+                    conteudoFinal = conteudoFinal.replace(
+                        expressoesComChaves[i],resultados[i]
+                    )
+                }
+
+                $(this).html(conteudoFinal)
+
+                return this
+            }
+        })(jQuery) // Aqui você protege a variável dólar e aqui dentro ela ser de fato o jQuery
+
+        $('div').interpretar()
+
     </script>
 </body>
