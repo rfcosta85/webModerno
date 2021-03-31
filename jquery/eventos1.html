@@ -20,6 +20,37 @@
     <input type="text" placeholder="Cor de Background">
 
     <script>
-        // ...
+        function mostrarPosicaoMouse(e) {
+            $('#posicao').html(`x:${e.clientX } y: ${e.clientY}`) // Aqui mostra qual a posição que o mouse está dentro da tela no browse 
+        }
+
+        $('body').on('mousemove', mostrarPosicaoMouse) //A função on registra um evento dentro do jQuery, o primeiro elemento é o nome do evento como uma string e a segunda parte é uma função que será chamada quando esse evento acontecer. 
+
+        $('#posicao').mouseover( e => {
+            $('body').off('mousemove', mostrarPosicaoMouse) // O mouse não estará ativo quando estivermos dentro da div de id posição.
+        })
+
+        $('#posicao').mouseleave(e => {
+            $('body').on('mousemove', mostrarPosicaoMouse) // Volta a estar ativo quando sair da div posicao
+        })
+
+        let cliques = 0 
+        $('body').click(e => {
+            $('#cliques').html(`Cliques: ${++cliques}`) // Aqui na div de id cliques nós estamos informando a palavra cliques e somando a quantidade de cliques a cada clique efetuado.  
+        })
+
+        const backgroundOriginal = $('body').css('background-color') // Aqui estamos atribuindo para a variável o valor do background definido no arquivo css
+
+        $('input').keyup(function (e) {
+            const valor = $(this).val()
+            if(valor.match(/#[\da-fA-F]{3,6}/)){
+                $('body').css('background-color', valor)
+            }else {
+                $('body').css('background-color', backgroundOriginal)
+            }
+        }) // Aqui temos no if se a cor digitada no campo for verdadeiro ele altera cor de background para essa cor, caso contrário ele volta para a cor original
+        
+        // keyup vai sempre pegar o valor atual que foi capturado pelo teclado
+        // A função val é a forma do jQuery de capturar um valor
     </script>
 </body>
