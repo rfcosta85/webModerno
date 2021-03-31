@@ -11,10 +11,24 @@
 <body class='conteudo exercicio'>
     <h1>Manipulando CSS</h1>
     <div id='div1'>1</div>
-    <div id='div2'>2</div>
-    <div id='div3'>3</div>
+    <div id='div2'>2</div>    
     <div id='resultado'></div>
     <script>
-        // ...
+        const fonte = $('#div1').css('font-family') // Iremos descobrir qual fonte estamos usando no documento
+        $('#resultado').append(`Fonte é ${fonte}`) // Apresentamos o valor da fonte na div resultado
+
+        $('#div1').css('font-size', '3em') // Aumentamos o tamanho da letra da div1
+        $('#div1').css( {'font-size': '3.5em', 'color': 'yellow'} ) // Aqui realizamos uma alteração em um conjunto de elementos.
+        $('#div1').css('font-size', function () {
+            return `${2 * 2}em`
+        }) // aqui passamos uma callback , onde nós passamos o atributo css font-size e no segundo passamos uma função onde realizamos uma multiplicação do tamanho do elemento. 
+
+        $('#div2').addClass('destaque') // Aqui adicionamos o atributo css destaque na div2
+
+        const temClasse = $('#div2').hasClass('destaque')
+
+        $('#resultado').append(`<br> Tem classe? ${temClasse}`) // aqui usamos uma função para verificar se uma classe está presente ou não em um determinado elemento. 
+
+        $('#div2').removeClass('destaque') // Aqui ele remove a classe destaque que adicionamos na div2 e agora ela não estará mais com o elemento destacado em amarelo. 
     </script>
 </body>
