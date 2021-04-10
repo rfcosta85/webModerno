@@ -1,0 +1,7 @@
+@import "~bootstrap/scss/bootstrap"; // o ~ quer dizer que ele irá procurar dentro de node_modules a pasta bootstrap/scss/bootstrap
+
+$fa-font-path: "~font-awesome/fonts"; // Aqui vamos sobrescreve uma variável do Saas do font-awesome que eu vou dizer onde que ele vai encontrar o diretório das fontes
+
+@import "~font-awesome/scss/font-awesome";
+
+@import "custom"; // Aqui estamos importando o arquivo custom.scss que criamos na primeira aula, para que a parti desse import eu possa gerar meu css final, tanto com o css do bootstrap, font e a e por final o custom irá agregar a todos.
