@@ -1,9 +1,11 @@
 import $ from 'jquery'
 
+import { onloadHtmlSuccess } from '../core/includes'
+
 const duration = 400 
 
 function filterByCIty(city) {
-    $([`[wm-city]`]).each(function(i, e) {
+    $(['[wm-city]']).each(function(i, e) {
         const isTarget = $(this).attr('wm-city') === city || city === null // Se nulo ele irá exibir todos os elementos, se não ele passará somente os elementos relacionados ao atributo passado como parâmetro
         if(isTarget) {
             $(thins).parent().removeClass('d-none') // d-none é a classe display none, e ela só será removida quando tivermos o fadeIn válido
@@ -31,7 +33,7 @@ $.fn.cityButtons = function () {
 
     const btnAll = $('<button>')
         .addClass(['btn', 'btn-info','active']).html('Todas')
-    btnAll.click(e => filterByCIty(null))
+    btnAll.click(e => filterByCity(null))
     btns.push(btnAll)
 
     const btnGroup = $('<div>').addClass(['btn-group'])
@@ -41,4 +43,11 @@ $.fn.cityButtons = function () {
     return this
 }
 
-$('[wm-city-buttons]').cityButtons() // A partir dessa propriedade o HTML será injetado 
+onloadHtmlSuccess(function() {
+
+    $('[wm-city-buttons]').cityButtons() // A partir dessa propriedade o HTML será injetado 
+
+})
+   
+
+

@@ -1,5 +1,13 @@
 import $ from 'jquery' //Ele vai procurar o jquery dentro de node_modules e dentro desse arquivo iremos referenciar o jquery com o $
 
+const loadHtmlSuccessCallbacks = [] //Definimos um array com várias funções
+
+export function onloadHtmlSuccess(callback) { // As funções são registradas uma única vez aqui
+    if(!loadHtmlSuccessCallbacks.includes(callback)) {
+        loadHtmlSuccessCallbacks.push(callback)
+    }  //Se a callback não estiver incluída no array e o array será carregado toda vez que carregarmos um html de forma bem sucedida 
+}
+
 function loadIncludes(parent) {
     if(!parent) parent = 'body' // Se o parent vier vazio (Ou seja, não estiver setado) estaremos setando um parent para ele procurar no boyd inteiro 
     $(parent).find('[wm-include]').each(function(i, e) {
@@ -13,6 +21,7 @@ function loadIncludes(parent) {
                 $(e).html(data) // Pegamos o elemento atual, chamamos a função html e setamos data a ela
                 $(e).removeAttr('wm-include') // Excluímos para q não haja mais interpretação dentro dela e não seja interpretada pela segunda vez
 
+                loadHtmlSuccessCallbacks.forEach(callback => callback(data))
                 loadIncludes(e) // O chamamos pq essa função é recursiva 
 
             } // a função callback que será feita quando a requisição ajax foi bem sucedida no sentido que ele irá processar todos os includes que ele encontrar.
