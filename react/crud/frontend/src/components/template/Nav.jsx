@@ -4,5 +4,12 @@ import React from 'react'
 /* Função de componentes funcionais */
 export default props => 
     <aside className="menu-area">
-        Navegação
+        <nav className="menu">
+            <a href="#">
+                <i className="fa fa-home">Início</i>
+            </a>
+            <a href="#">
+                <i className="fa fa-users">Usuários</i>
+            </a>
+        </nav>
     </aside>
