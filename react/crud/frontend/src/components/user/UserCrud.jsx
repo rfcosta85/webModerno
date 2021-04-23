@@ -41,10 +41,50 @@ export default class USerCrud extends Component {
         return list
     }
 
+    updateField(event) {
+        const user = {... this.state.user } //Iremos clonar o usuário usando o operado spread pois não é interessante alterar o estado do objeto, portanto clonamos o objeto, alteramos e depois setamos o estado usando a fç set state
+        user[event.target.name] = event.target.value 
+        this.setState({ user })
+    }
+
+    renderForm() {
+        return (
+            <div className="form">
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <div className="form-group">
+                            <label>Nome</label>
+                            <input type="text" className="form-control" name="name" value={this.state.user.name} onChange={e => this.updateField(e)} placeholder="Digite o nome..."/>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-12 col-md-6">
+                    <div className="form-group">
+                        <label>E-mail</label>
+                        <input type="text" className="form-control" name="email" value={this.state.user.email} onChange={e => this.updateField(e)} placeholder="Digite o e-mail"/>
+                    </div>
+                </div>
+
+                <hr/>
+                <div className="row">
+                    <div className="col-12 d-flex justify-content-end">
+                        <button className="btn btn-primary" onClick={e => this.save(e)}>                            
+                            Salvar
+                        </button>
+
+                        <div className="btn btn-secondary ml-2" onClick={e => this.clear(e)}>
+                            Cancelar
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        )
+    }
+
     render() {
         return (
             <Main {...headerProps}>
-                Cadastro de Usuário
+                {this.renderForm()}
             </Main>
         )
     }
