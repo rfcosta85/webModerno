@@ -8,8 +8,31 @@
 </head>
 <body class="exercicio">
 
+    <div id="app">
+        <p>{{ link }}</p>
+        <p><a href="{{link}}">Canal?</a></p> <!--Aqui não irá funcionar, para isso acontecer, precisaremos utilizar o bind, que iremos realizar logo abaixo-->
+        <p><a v-bind:href="link">Canal</a></p>
+        <p><a :href="link">Canal</a></p> <!--Forma reduzida de fazer um bind-->
+        <p>
+            <input type="text" v-model="nome"><br> <!--V-model é uma atualização em duas direções ou biden bidirecional-->
+            <span>{{ nome }}</span>
+        </p>
+
+    </div>
+    
     <script>
-        // ...
+        new Vue({
+            el: "#app",
+            data: {
+                nome: "Maria",
+                link: "https://youtube.com/cod3rcursos"
+            },
+            watch: {
+                nome(novoValor) {
+                    console.log(novoValor.toUpperCase())
+                }
+            }
+        })
     </script>
 </body>
 </html>
